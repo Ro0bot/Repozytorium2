@@ -3,91 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABCD</title>
-	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript.js"></script>
+    <title>Exercise Tracker</title>
 </head>
 <body>
-  <header>
-    <h1>EFGH</h1>
-  </header>
-<div id="board">
-    <div class="list-container">
-      <div class="list" id="todoList">
-        <div class="list-header">To Do</div>
-      </div>
-    </div>
-    <div class="list-container">
-      <div class="list" id="doneList">
-        <div class="list-header">Done</div>
-      </div>
-    </div>
- </div>
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <form id="addForm">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <label for="exerciseName">Exercise Name:</label>
-        <input type="text" id="exerciseName" name="exerciseName" required>
-        <label for="muscleGroup">Muscle Group:</label>
-        <input type="text" id="muscleGroup" name="muscleGroup" required>
-        <label for="weight">Weight:</label>
-        <input type="text" id="weight" name="weight" required>
-        <label for="repetitions">Repetitions:</label>
-        <input type="number" id="repetitions" name="repetitions" required>
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <button type="button" onclick="addExercise('todoList')">Add Exercise (To Do)</button>
-        <button type="button" onclick="addExercise('doneList')">Add Exercise (Done)</button>
-      </form>
-    </div>
-  </div>
-	<div id="abc" class="center-card">
-          <div class="card" onclick="openModal('Add Exercise')">
-          <span class="remove-button" onclick="removeExercise(this)">x</span>
-          <strong>Add Exercise</strong>
-	</div>
-  <script>
-    function openModal(title) {
-      document.getElementById('myModal').style.display = 'flex';
-    }
-    function closeModal() {
-      document.getElementById('myModal').style.display = 'none';
-      document.getElementById('addForm').reset();
-    }
-    function addExercise(listId) {
-      const exerciseName = document.getElementById('exerciseName').value;
-      const muscleGroup = document.getElementById('muscleGroup').value;
-      const weight = document.getElementById('weight').value;
-      const repetitions = document.getElementById('repetitions').value;
-      const age = document.getElementById('age').value;
-      const gender = document.getElementById('gender').value;
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <span class="remove-button" onclick="removeExercise(this)">x</span>
-        <strong>${exerciseName}</strong><br>
-        Muscle Group: ${muscleGroup}<br>
-        Weight: ${weight}<br>
-        Repetitions: ${repetitions}<br>
-        Age: ${age}<br>
-        Gender: ${gender}
-      `;
-      card.onclick = function() {
-        openModal(`Edit ${exerciseName}`);
-      };
-      const targetList = document.getElementById(listId);
-      targetList.appendChild(card);
-      closeModal();
-    }
-    function removeExercise(button) {
-      const card = button.parentNode;
-      card.remove();
-    }
-  </script>
-</body>
+	<div id="content">
+		<div id="header">
+			<button type="button" onclick="addBlankCard()">Add Exercise Card</button>
+		</div>
+		<div id="navbar">
+			
+		</div>
+		<div class="container">
+			<div class="list" id="todo-list">
+				<h2>To Do</h2>
+				<div id="todo-cards" class="cards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			</div>
+			<div class="list" id="done-list">
+				<h2>Done</h2>
+				<div id="done-cards" class="cards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			</div>
+		</div>
+	</div>	
 </html>
